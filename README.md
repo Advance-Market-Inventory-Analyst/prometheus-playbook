@@ -29,7 +29,9 @@ prometheus-2.19.0.linux-amd64.tar.gz                100%[=======================
 
 
 ubuntu@ip-172-31-89-209:/$ sudo tar xvfz prometheus-2.19.0.linux-amd64.tar.gz
+
 output
+
 prometheus-2.19.0.linux-amd64/
 prometheus-2.19.0.linux-amd64/consoles/
 prometheus-2.19.0.linux-amd64/consoles/prometheus.html
@@ -50,10 +52,13 @@ prometheus-2.19.0.linux-amd64/console_libraries/prom.lib
 prometheus-2.19.0.linux-amd64/promtool
 
 ubuntu@ip-172-31-89-209:/$ cd /prometheus-2.19.0.linux-amd64
+
 output
 
 ubuntu@ip-172-31-89-209:/prometheus-2.19.0.linux-amd64$ ./prometheus --version
+
 output
+
 prometheus, version 2.19.0 (branch: HEAD, revision: 5d7e3e970602c755855340cb190a972cebdd2ebf)
   build user:       root@d4cf5c7e268d
   build date:       20200609-10:29:59
