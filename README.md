@@ -21,26 +21,7 @@ prometheus-2.19.0.linux-amd64.tar.gz                100%[=======================
 
 ubuntu@ip-172-31-89-209:/$ sudo tar xvfz prometheus-2.19.0.linux-amd64.tar.gz
 
-output
 
-prometheus-2.19.0.linux-amd64/
-prometheus-2.19.0.linux-amd64/consoles/
-prometheus-2.19.0.linux-amd64/consoles/prometheus.html
-prometheus-2.19.0.linux-amd64/consoles/node-overview.html
-prometheus-2.19.0.linux-amd64/consoles/node-disk.html
-prometheus-2.19.0.linux-amd64/consoles/index.html.example
-prometheus-2.19.0.linux-amd64/consoles/prometheus-overview.html
-prometheus-2.19.0.linux-amd64/consoles/node.html
-prometheus-2.19.0.linux-amd64/consoles/node-cpu.html
-prometheus-2.19.0.linux-amd64/tsdb
-prometheus-2.19.0.linux-amd64/NOTICE
-prometheus-2.19.0.linux-amd64/prometheus
-prometheus-2.19.0.linux-amd64/LICENSE
-prometheus-2.19.0.linux-amd64/prometheus.yml
-prometheus-2.19.0.linux-amd64/console_libraries/
-prometheus-2.19.0.linux-amd64/console_libraries/menu.lib
-prometheus-2.19.0.linux-amd64/console_libraries/prom.lib
-prometheus-2.19.0.linux-amd64/promtool
 
 
 
@@ -50,6 +31,7 @@ prometheus-2.19.0.linux-amd64/promtool
  Prometheus is an open-source monitoring system which is very lightweight and has a good alerting mechanism.
 
 Install and Configure Prometheus
+
 This guide explains how to install and configure the latest Prometheus on a Linux VM.
 
 If you would like to install Prometheus on a Kubernetes cluster, please see the Prometheus on kubernetes guide.
@@ -68,12 +50,51 @@ sudo yum update -y
 # Step 2: Go to the official Prometheus downloads page and get the latest download link for the Linux binary.
 
 prometheus linux download link
+https://prometheus.io/download/
 
 # Step 3: Download the source using curl, untar it, and rename the extracted folder to prometheus-files.
 
 wget https://github.com/prometheus/prometheus/releases/download/v2.29.2/prometheus-2.29.2.linux-amd64.tar.gz
 
 tar -xvf prometheus-2.22.0.linux-amd64.tar.gz
+
+output
+
+prometheus-2.19.0.linux-amd64/
+
+prometheus-2.19.0.linux-amd64/consoles/
+
+prometheus-2.19.0.linux-amd64/consoles/prometheus.html
+
+prometheus-2.19.0.linux-amd64/consoles/node-overview.html
+
+prometheus-2.19.0.linux-amd64/consoles/node-disk.html
+
+prometheus-2.19.0.linux-amd64/consoles/index.html.example
+
+prometheus-2.19.0.linux-amd64/consoles/prometheus-overview.html
+
+prometheus-2.19.0.linux-amd64/consoles/node.html
+
+prometheus-2.19.0.linux-amd64/consoles/node-cpu.html
+
+prometheus-2.19.0.linux-amd64/tsdb
+
+prometheus-2.19.0.linux-amd64/NOTICE
+
+prometheus-2.19.0.linux-amd64/prometheus
+
+prometheus-2.19.0.linux-amd64/LICENSE
+
+prometheus-2.19.0.linux-amd64/prometheus.yml
+
+prometheus-2.19.0.linux-amd64/console_libraries/
+
+prometheus-2.19.0.linux-amd64/console_libraries/menu.lib
+
+prometheus-2.19.0.linux-amd64/console_libraries/prom.lib
+
+prometheus-2.19.0.linux-amd64/promtool
 
 ubuntu@ip-172-31-89-209:/$ cd /prometheus-2.22.0.linux-amd64
 
