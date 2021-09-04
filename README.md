@@ -5,28 +5,7 @@ Let’s connect to the AWS EC2 instance where we are going to install Prometheus
 
 ssh -i prometheus.pem ubuntu@ec2-3-17-28.53.us-east-2.compute.amazonaws.com
 
-create a directory to host Prometheus configuration and another one to host its data.
-
-
-
-ubuntu@ip-172-31-89-209:~$ sudo wget https://github.com/prometheus/prometheus/releases/download/v2.19.0/prometheus-2.19.0.linux-amd64.tar.gz
-
-output
-Saving to: ‘prometheus-2.19.0.linux-amd64.tar.gz’
-
-prometheus-2.19.0.linux-amd64.tar.gz                100%[=================================================================================================================>]  61.19M  87.3MB/s    in 0.7s    
-
-2021-09-03 19:04:00 (87.3 MB/s) - ‘prometheus-2.19.0.linux-amd64.tar.gz’ saved [64161216/64161216]
-
-
-ubuntu@ip-172-31-89-209:/$ sudo tar xvfz prometheus-2.19.0.linux-amd64.tar.gz
-
-
-
-
-
-
-  
+create a directory to host Prometheus configuration and another one to host its data 
   
  Prometheus is an open-source monitoring system which is very lightweight and has a good alerting mechanism.
 
@@ -55,6 +34,16 @@ https://prometheus.io/download/
 # Step 3: Download the source using curl, untar it, and rename the extracted folder to prometheus-files.
 
 wget https://github.com/prometheus/prometheus/releases/download/v2.29.2/prometheus-2.29.2.linux-amd64.tar.gz
+
+output
+
+HTTP request sent, awaiting response... 200 OK
+Length: 73175122 (70M) [application/octet-stream]
+Saving to: ‘prometheus-2.29.2.linux-amd64.tar.gz’
+
+prometheus-2.29.2.linux-amd64.tar.gz                100%[=================================================================================================================>]  69.79M  45.9MB/s    in 1.5s    
+
+2021-09-03 23:54:52 (45.9 MB/s) - ‘prometheus-2.29.2.linux-amd64.tar.gz’ saved [73175122/73175122]
 
 tar -xvf prometheus-2.22.0.linux-amd64.tar.gz
 
