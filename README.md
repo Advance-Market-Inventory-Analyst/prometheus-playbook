@@ -82,14 +82,17 @@ Setup Prometheus Binaries
 Step 1: Update the yum package repositories.
 
 sudo yum update -y
+
 Step 2: Go to the official Prometheus downloads page and get the latest download link for the Linux binary.
 
 prometheus linux download link
 
 Step 3: Download the source using curl, untar it, and rename the extracted folder to prometheus-files.
 
-curl -LO url -LO https://github.com/prometheus/prometheus/releases/download/v2.22.0/prometheus-2.22.0.linux-amd64.tar.gz
+wget https://github.com/prometheus/prometheus/releases/download/v2.29.2/prometheus-2.29.2.linux-amd64.tar.gz
+
 tar -xvf prometheus-2.22.0.linux-amd64.tar.gz
+
 mv prometheus-2.22.0.linux-amd64 prometheus-files
 
 
