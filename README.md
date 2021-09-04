@@ -7,16 +7,7 @@ ssh -i prometheus.pem ubuntu@ec2-3-17-28.53.us-east-2.compute.amazonaws.com
 
 create a directory to host Prometheus configuration and another one to host its data.
 
-ubuntu@ip-172-31-89-209:~$ sudo useradd --no-create-home prometheus
-ubuntu@ip-172-31-89-209:~$ sudo mkdir /etc/prometheus
-output
-ubuntu@ip-172-31-89-209:/etc/prometheus$
 
-ubuntu@ip-172-31-89-209:~$ sudo mkdir /var/lib/prometheus
-output
-ubuntu@ip-172-31-89-209:/var/lib/prometheus$
-
-Now we need to install Prometheus.
 
 ubuntu@ip-172-31-89-209:~$ sudo wget https://github.com/prometheus/prometheus/releases/download/v2.19.0/prometheus-2.19.0.linux-amd64.tar.gz
 
@@ -51,18 +42,9 @@ prometheus-2.19.0.linux-amd64/console_libraries/menu.lib
 prometheus-2.19.0.linux-amd64/console_libraries/prom.lib
 prometheus-2.19.0.linux-amd64/promtool
 
-ubuntu@ip-172-31-89-209:/$ cd /prometheus-2.19.0.linux-amd64
 
-output
 
-ubuntu@ip-172-31-89-209:/prometheus-2.19.0.linux-amd64$ ./prometheus --version
 
-output
-
-prometheus, version 2.19.0 (branch: HEAD, revision: 5d7e3e970602c755855340cb190a972cebdd2ebf)
-  build user:       root@d4cf5c7e268d
-  build date:       20200609-10:29:59
-  go version:       go1.14.4
   
   
  Prometheus is an open-source monitoring system which is very lightweight and has a good alerting mechanism.
@@ -79,24 +61,37 @@ The server has access to the internet for downloading the Prometheus binary.
 Most importantly, firewall rules opened for accessing Prometheus port 9090 on the server.
 Setup Prometheus Binaries
 
-Step 1: Update the yum package repositories.
+# Step 1: Update the yum package repositories.
 
 sudo yum update -y
 
-Step 2: Go to the official Prometheus downloads page and get the latest download link for the Linux binary.
+# Step 2: Go to the official Prometheus downloads page and get the latest download link for the Linux binary.
 
 prometheus linux download link
 
-Step 3: Download the source using curl, untar it, and rename the extracted folder to prometheus-files.
+# Step 3: Download the source using curl, untar it, and rename the extracted folder to prometheus-files.
 
 wget https://github.com/prometheus/prometheus/releases/download/v2.29.2/prometheus-2.29.2.linux-amd64.tar.gz
 
 tar -xvf prometheus-2.22.0.linux-amd64.tar.gz
 
+ubuntu@ip-172-31-89-209:/$ cd /prometheus-2.22.0.linux-amd64
+
+ubuntu@ip-172-31-89-209:/prometheus-2.22.0.linux-amd64$ ./prometheus --version
+
+output
+
+prometheus, version 2.22.0 (branch: HEAD, revision: 5d7e3e970602c755855340cb190a972cebdd2ebf)
+  build user:       root@d4cf5c7e268d
+  build date:       20200609-10:29:59
+  go version:       go1.14.4
+  
+# rename the extracted folder to prometheus-files
+
 mv prometheus-2.22.0.linux-amd64 prometheus-files
 
 
-Step 4: Create a Prometheus user, required directories, and make Prometheus the user as the owner of those directories.
+# Step 4: Create a Prometheus user, required directories, and make Prometheus the user as the owner of those directories.
 
 sudo useradd --no-create-home --shell /bin/false prometheus
 
@@ -119,7 +114,7 @@ sudo chown prometheus:prometheus /usr/local/bin/prometheus
 
 sudo chown prometheus:prometheus /usr/local/bin/promtool
 
-Step 6: Move the consoles and console_libraries directories from prometheus-files to /etc/prometheus folder and change the ownership to prometheus user.
+# Step 6: Move the consoles and console_libraries directories from prometheus-files to /etc/prometheus folder and change the ownership to prometheus user.
 
 sudo cp -r prometheus-files/consoles /etc/prometheus
 
@@ -130,16 +125,16 @@ sudo chown -R prometheus:prometheus /etc/prometheus/consoles
 sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
 
 
-Setup Prometheus Configuration
+# Setup Prometheus Configuration
 
 
 All the prometheus configurations should be present in /etc/prometheus/prometheus.yml file.
 
-Step 1: Create the prometheus.yml file.
+# Step 1: Create the prometheus.yml file.
 
 sudo vi /etc/prometheus/prometheus.yml
 
-Step 2: Copy the following contents to the prometheus.yml file.
+# Step 2: Copy the following contents to the prometheus.yml file.
 
 global:
   scrape_interval: 10s
@@ -155,17 +150,17 @@ scrape_configs:
       - targets: ['localhost:9090']
 
     
-Step 3: Change the ownership of the file to prometheus user.
+# Step 3: Change the ownership of the file to prometheus user.
 
 sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
 
 Setup Prometheus Service File
 
-Step 1: Create a prometheus service file.
+# Step 1: Create a prometheus service file.
 
-sudo vi /etc/systemd/system/prometheus.service
+ sudo vi /etc/systemd/system/prometheus.service
 
-Step 2: Copy the following content to the file.
+# Step 2: Copy the following content to the file.
 
 [Unit]
 Description=Prometheus
@@ -194,7 +189,7 @@ ExecStart=/usr/local/bin/prometheus \
 [Install]
 WantedBy=multi-user.target
 
-Step 3: Reload the systemd service to register the prometheus service and start the prometheus service.
+# Step 3: Reload the systemd service to register the prometheus service and start the prometheus service.
 
 sudo systemctl daemon-reload
 
